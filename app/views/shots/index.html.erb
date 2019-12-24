@@ -22,13 +22,13 @@
               <div class="level-item views data">
                 <%= link_to shot do %>
                   <span class="icon"><i class="fa fa-eye"></i></span>
-                  0
+                  <%= shot.impressionist_count %>
                 <% end %>
               </div>
               <div class="level-item comments data">
                 <%= link_to shot do %>
                   <span class="icon"><i class="fa fa-comment"></i></span>
-                  0
+                  <%= shot.comments.count %>
                 <% end %>
               </div>
               <div class="level-item likes">
@@ -42,7 +42,7 @@
         </div>
         <div class="user-data">
           <div class="user-thumb">
-            <%= gravatar_image_tag(shot.user.email.gsub('span', 'mdeering'), alt: shot.user.name, gravatar: { size: 20}) %>
+            <%= gravatar_image_tag(shot.user.email.gsub('spam', 'mdeering'), alt: shot.user.name, gravatar: { size: 20}) %>
           </div>
           <div class="user-name">
             <%= shot.user.name %>
