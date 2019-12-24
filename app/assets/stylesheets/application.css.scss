@@ -18,6 +18,10 @@ html, body {
 	background-color: #f4f4f4;
 }
 
+.file-input {
+	visibility: hidden;
+ } 
+
 #drop_zone {
 	position: relative;
 	padding: 3rem 0;
