@@ -2,30 +2,32 @@
 	<div class="container">
 		<div class="columns is-centered">
 			<div class="column is-4">
-				<h2 class="title is-2">Log in</h2>
-				<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+				<h2 class="title is-2 has-text-centered">Log in</h2>
 
-				  <div class="field">
-				  	<div class="control">
-				    	<%= f.input :email, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
-				    </div>
-				  </div>
+				<%= form_for(@user, as: @user, url: new_session_path(@user)) do |f| %>
 
-				  <div class="field">
-				  	<div class="control">
-				    <%= f.input :password, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
-						</div>
-					</div>
+        <div class="field">
+          <%= f.email_field_with_label :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-					<div class="field">
-				  	<div class="control">
-				    <%= f.input :remember_me, wrapper: false, as: :boolean if devise_mapping.rememberable? %>
-				  	</div>
-					</div>
+        <div class="field">
+          <%= f.password_field_with_label :password, autofocus: true %>
+        </div>
 
-				  <%= f.button :submit, "Log in", class:"button is-primary is-medium" %>
-				<% end %>
+				<!-- <div class="field">
+					<%= f.label_check_box :remember_me, wrapper: false, as: :boolean if devise_mapping.rememberable? %>
+				</div> -->
+
+				<div class="field is-grouped is-grouped-centered has-margin-top">
+					<p class="control">
+						<%= f.submit_primary "Login" %>
+					</p>
+				</div>
+
+			  <% end %>
+
 				<br/>
+
 				<%= render "devise/shared/links" %>
 			</div>
 		</div>

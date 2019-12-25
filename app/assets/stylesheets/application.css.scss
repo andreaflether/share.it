@@ -18,12 +18,34 @@ html, body {
 	background-color: #E8E8E8;
 }
 
-.notification.is-primary {
+abbr[title] {
+  text-decoration: none;
+}
+
+.hint {
+	font-size: 14px;
+	color: rgb(150, 150, 150);
+}
+
+.has-margin-top {
+	margin-top: 20px;
+}
+
+.notification.is-primary, .notification.is-danger {
   position: absolute;
 	width: 30%;
 	top: 20px;
 	right: 20px;
   z-index: 1000;
+	background-color: rgba(202, 69, 255, 0.7);
+}
+
+.notification.is-primary {
+	background-color: rgba(202, 69, 255, 0.7);
+}
+
+.notification.is-danger {
+	background-color: rgba(241, 70, 104, 0.7);
 }
 
 .file-input {

@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <% if devise_controller? %>
+    <style>
+    body {
+      background-color: #f1f1f1;  
+    }
+    </style>
+    <% end %>
+
     <% if flash[:notice] %>
       <div class="notification is-primary">
         <button class="delete"></button>
@@ -37,12 +45,11 @@
     </div>
 
       <div id="navbar" class="navbar-menu">
-
         <div class="navbar-start">
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <%= link_to 'Shots', shots_path , class:"button is-dark" %>
+                <%= link_to 'Dashboard', shots_path , class:"button is-dark" %>
               </p>
             </div>
           </div>
