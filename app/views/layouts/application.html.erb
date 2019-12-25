@@ -12,14 +12,16 @@
 
   <body>
     <% if flash[:notice] %>
-      <div class="notification is-primary global-notification">
-        <p class="notice"><%= notice %></p>
+      <div class="notification is-primary">
+        <button class="delete"></button>
+        <%= notice %>
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="notification is-danger global-notification">
-        <p class="alert"><%= alert %></p>
-      </div>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <%= alert %>
+    </div>
     <% end %>
 
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -78,4 +80,15 @@
 
     <%= yield %>
   </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+        $notification = $delete.parentNode;
+        $delete.addEventListener('click', () => {
+          $notification.parentNode.removeChild($notification);
+        });
+      });
+    });
+  </script>
 </html>
