@@ -1,9 +1,6 @@
 // *= require_tree .
 // *= require_self
 
-// @import "../sass/utilities/initial-variables";
-// @import "../sass/utilities/functions";
-
 $purple: #CA45FF;
 $purple-invert: #fff;
 $primary: $purple;
@@ -12,10 +9,16 @@ $link: $primary;
 $link-hover: darken($primary, 20%);
 
 @import "bulma";
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap');
 
 html, body {
 	min-height: 100vh;
-	background-color: #E8E8E8;
+	background-color: #f1f1f1;
+}
+
+.navbar-brand {
+	font-family: 'Playfair Display', sans-serif;
+
 }
 
 abbr[title] {

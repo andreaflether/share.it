@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dribbble Clone</title>
+    <title>Share.it</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://kit.fontawesome.com/8d9d868ad3.js" %>
+    <%= favicon_link_tag 'share-logo.ico' %>
   </head>
 
   <body>
     <% if devise_controller? %>
     <style>
     body {
-      background-color: #f1f1f1;  
+      background-color: #f1f1f1;
     }
     </style>
     <% end %>
@@ -33,52 +34,70 @@
     <% end %>
 
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <%= link_to root_path, class:"navbar-item" do %>
-          <h1 class="title is-5 has-text-white">Dribbble Clone</h1>
-        <% end  %>
-      <div class="navbar-burger burger" data-target="navbar">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="container">
+        <div class="navbar-brand">
+          <%= link_to root_path, class:"navbar-item" do %>
+            <h1 class="title is-5 has-text-white has-text-primary">Share.it</h1>
+          <% end  %>
+        <div class="navbar-burger burger" data-target="navbar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-    </div>
 
-      <div id="navbar" class="navbar-menu">
-        <div class="navbar-start">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <%= link_to 'Dashboard', shots_path , class:"button is-dark" %>
-              </p>
+        <div id="navbar" class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to 'Dashboard', shots_path , class:"button is-dark" %>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <% if user_signed_in? %>
-              <p class="control">
-                <%= link_to new_shot_path, class:"button is-primary"  do %>
-                  <span class="icon is-small"><i class="fa fa-upload"></i></span>
-                  <span>New Shot</span>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <% if user_signed_in? %>
+                <p class="control">
+                  <%= link_to new_shot_path, class:"button is-primary"  do %>
+                    <span class="icon is-small"><i class="fa fa-upload"></i></span>
+                    <span>New Share</span>
+                  <% end %>
+                </p>
+                <div class="dropdown">
+                  <div class="dropdown-trigger">
+                    <%= button_tag current_user.name, class: "button is-dark", id: "dropdown-menu" do %>
+
+                      <%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), alt: current_user.name,
+                      gravatar: { size: 20}, class: "icon-img") %>
+
+
+                    <%= current_user.name %> &nbsp;
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    <% end %>
+                  </div>
+                  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                      <%= link_to "Preferences", edit_user_registration_path, class:"dropdown-item" %>
+                      <hr class="dropdown-divider">
+                      <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item" %>
+                    </div>
+                  </div>
+                </div>
+                <% else %>
+                <p class="control">
+                   <%= link_to "Sign In", new_user_session_path, class:"button is-dark" %>
+                </p>
+                <p class="control">
+                  <%= link_to "Sign up", new_user_registration_path, class:"button is-dark"%>
+                </p>
                 <% end %>
-              </p>
-              <p class="control">
-                <%= link_to current_user.name, edit_user_registration_path, class:"button is-dark" %>
-              </p>
-              <p class="control">
-                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"button is-dark" %>
-              </p>
-              <% else %>
-              <p class="control">
-                 <%= link_to "Sign In", new_user_session_path, class:"button is-dark" %>
-              </p>
-              <p class="control">
-                <%= link_to "Sign up", new_user_registration_path, class:"button is-dark"%>
-              </p>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -97,5 +116,18 @@
         });
       });
     });
+
+    var dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('click', function(event) {
+      event.stopPropagation();
+      dropdown.classList.toggle('is-active');
+    });
+
+    $(document).click(function(event){
+        if (!$(event.target).hasClass('is-active')) {
+            $(".dropdown").removeClass("is-active");
+        }
+    });
+
   </script>
 </html>

@@ -9,13 +9,18 @@
       <div class="content">
         <p>
           <strong><%= comment.user.name %></strong>
+          <span class="has-text-grey-light">on <span class="has-text-weight-semibold">
+            <%= complete_time(comment.created_at) %></span>
+          <span>
           <div class="comment-resp"><%= comment.response %></div>
         </p>
       </div>
     </div>
     <% if(user_signed_in? && (current_user.id == comment.user_id)) %>
-      <%= link_to 'Delete', [comment.shot, comment], method: :delete, class: "button is-danger",
-      data: {confirm: 'Are you sure you want to delete this comment?'} %>
+      <%= button_tag [comment.shot, comment], method: :delete, class: "button is-danger is-outlined is-small",
+      data: {confirm: 'Are you sure you want to delete this comment?'} do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
     <% end %>
   </article>
 </div>
