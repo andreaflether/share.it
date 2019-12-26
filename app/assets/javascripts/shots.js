@@ -93,7 +93,7 @@ document.addEventListener("turbolinks:load", function() {
 		},
 		shotHover() {
 			$('.shot').hover(function() {
-				$(this).children('.shot-data').toggleClass('visible');
+				$(this).children('.shot-data').fadeToggle().toggleClass('visible')
 			});
 		}
 
