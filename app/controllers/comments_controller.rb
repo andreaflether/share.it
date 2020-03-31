@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id if current_user # assigns logged in user's ID to comment
     @comment.save!
 
-    redirect_to shot_path(@shot)
+    redirect_to shot_path(@shot), notice: "Comment posted!"
   end
 
   def destroy
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     @comment = @shot.comments.find(params[:id])
     @comment.destroy
 
-    redirect_to shot_path(@shot)
+    redirect_to shot_path(@shot), "Comment deleted successfully."
   end
 
   private

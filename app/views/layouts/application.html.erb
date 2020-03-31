@@ -6,9 +6,9 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag "https://kit.fontawesome.com/8d9d868ad3.js" %>
-    <%= favicon_link_tag 'share-logo.ico' %>
+    <%= favicon_link_tag 'share_it.ico' %>
   </head>
 
   <body>
@@ -39,7 +39,7 @@
           <%= link_to root_path, class:"navbar-item" do %>
             <h1 class="title is-5 has-text-white has-text-primary">Share.it</h1>
           <% end  %>
-        <div class="navbar-burger burger" data-target="navbar">
+        <div class="navbar-burger burger" data-target="#navbar">
           <span></span>
           <span></span>
           <span></span>
@@ -47,7 +47,7 @@
       </div>
 
         <div id="navbar" class="navbar-menu">
-          <div class="navbar-start">
+          <div class="navbar-start is-centered has-text-centered">
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
@@ -57,7 +57,7 @@
             </div>
           </div>
 
-          <div class="navbar-end">
+          <div class="navbar-end is-centered has-text-centered">
             <div class="navbar-item">
               <div class="field is-grouped">
                 <% if user_signed_in? %>
@@ -72,13 +72,12 @@
                     <%= button_tag current_user.name, class: "button is-dark", id: "dropdown-menu" do %>
 
                       <%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), alt: current_user.name,
-                      gravatar: { size: 20}, class: "icon-img") %>
+                      gravatar: { size: 23}, class: "icon-img") %>
 
-
-                    <%= current_user.name %> &nbsp;
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
+                      <%= current_user.name %> &nbsp;
+                      <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                      </span>
                     <% end %>
                   </div>
                   <div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -124,10 +123,23 @@
     });
 
     $(document).click(function(event){
-        if (!$(event.target).hasClass('is-active')) {
-            $(".dropdown").removeClass("is-active");
-        }
+      if (!$(event.target).hasClass('is-active')) {
+          $(".dropdown").removeClass("is-active");
+      }
     });
+  
+    $(document).ready(function() {
+
+      // Check for click events on the navbar burger icon
+      $(".navbar-burger").click(function() {
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          $(".navbar-burger").toggleClass("is-active");
+          $(".navbar-menu").toggleClass("is-active");
+
+      });
+    });
+</script>
 
   </script>
 </html>

@@ -6,6 +6,14 @@
   }
 </style>
 <section class="section">
+  <% if @shots.blank? %>
+  <div class="container has-text-centered">
+    <h2 class="title is-4">Nothing to see here yet :(</h2>
+    <h2><%= link_to 'Post a new share', new_shot_path %>
+     and help the community to grow!
+    </h2> 
+  </div>
+  <% else %>
   <div class="shots">
     <% @shots.each do |shot| %>
       <div class="shot-grid-item">
@@ -74,7 +82,8 @@
           </div>
         </div>
       </div>
-    <% end %>
 
   </div>
+    <% end %>
+  <% end %>
 </section>

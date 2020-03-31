@@ -1,25 +1,31 @@
 // *= require_tree .
 // *= require_self
 
-$purple: #CA45FF;
-$purple-invert: #fff;
-$primary: $purple;
-$primary-invert: $purple-invert;
+$blue: rgb(0, 145, 254);
+$blue-invert: #fff;
+$primary: $blue;
+$primary-invert: $blue-invert;
 $link: $primary;
 $link-hover: darken($primary, 20%);
 
 @import "bulma";
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sen:400,700&display=swap'); // Logo
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap'); // Primary font
+
+.navbar-brand {
+  font-family: 'Sen', sans-serif;
+}
+
+body {
+  font-family: 'Lato', sans-serif !important;
+}
+
 
 html, body {
 	min-height: 100vh;
 	background-color: #f1f1f1;
 }
 
-.navbar-brand {
-	font-family: 'Playfair Display', sans-serif;
-
-}
 
 abbr[title] {
   text-decoration: none;
@@ -40,15 +46,14 @@ abbr[title] {
 	top: 20px;
 	right: 20px;
   z-index: 1000;
-	background-color: rgba(202, 69, 255, 0.7);
 }
 
 .notification.is-primary {
-	background-color: rgba(202, 69, 255, 0.7);
+	background-color: rgba(84, 179, 100, 0.85);
 }
 
 .notification.is-danger {
-	background-color: rgba(241, 70, 104, 0.7);
+  background-color: rgba(241, 70, 104, 0.85);
 }
 
 .file-input {
